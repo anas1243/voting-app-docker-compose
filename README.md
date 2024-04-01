@@ -38,9 +38,11 @@ docker compose up -d
 
 Docker creates a new bridge network specifically for the stack with DNS enabled that's why applications can reach each others using their containers name
 
+![docker volume](images/docker-network.png)
+
 2. Volumes
 
-Docker don't delete the volumes in the stack when you delete the stack
+Docker doesn't delete the volumes in the stack when you delete the stack
 ```shell
 docker compose down
 ```
