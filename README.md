@@ -24,5 +24,51 @@ docker compose up -d
 ```
 ![docker compose up](images/Screenshot%202024-04-01%20at%204.40.09 PM.png)
 
-![voting test](images/Screenshot%202024-04-01%20at%204.42.55 PM.png)
+2. put your vote in the voting app on port 90
+
 ![result test](images/Screenshot%202024-04-01%20at%204.43.04 PM.png)
+
+3. Get the result form the result app on port 91
+
+![voting test](images/Screenshot%202024-04-01%20at%204.42.55 PM.png)
+
+## learned topics
+
+1. Network
+
+Docker creates a new bridge network specifically for the stack with DNS enabled that's why applications can reach each others using their containers name
+
+2. Volumes
+
+Docker don't delete the volumes in the stack when you delete the stack
+```shell
+docker compose down
+```
+![docker compose down](images/docker-compose-down.png)
+
+unless you get it -v option
+
+```shell
+docker compose down -v
+```
+![docker compose down -v](images/docker-compose-down-volume.png)
+
+3. logs 
+
+- you can always see all stack logs
+
+```shell
+docker compose logs
+```
+
+![all logs](images/all-logs.png)
+
+- you can always see specific app logs
+
+```shell
+docker compose logs vote
+```
+
+![vote logs](images/vote-logs.png)
+
+
