@@ -1,0 +1,47 @@
+services:
+
+  redis:
+    image: redis:latest
+    volumes:
+      - redis-vol:/data
+
+  worker:
+    build:
+      context: worker
+      dockerfile: Dockerfile
+    image: anas1243/worker-app
+    depends_on:
+      - redis
+      - db
+
+  db:
+    image: postgres:latest
+    volumes:
+      - postgres-vol:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
+  vote:
+    build:
+      context: vote
+      dockerfile: Dockerfile
+    image: anas1243/vote-app
+    ports:
+      - 90:80
+    depends_on:
+      - redis
+
+  result:
+    build:
+      context: result
+      dockerfile: Dockerfile
+    image: anas1243/result-app
+    ports:
+      - 91:80
+    depends_on:
+      - db
+
+
+volumes:
+  postgres-vol:
+  redis-vol:
